@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      test_windows:
+        description: 'Test on Windows'
+        type: boolean
+        default: true
+
+jobs:
+  MacOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build
+      run: |
+        mkdir ${{ github.workspace }}/build
+        cmake ${{ github.workspace }}
+        make ${{ github.workspace }}/build/ci
