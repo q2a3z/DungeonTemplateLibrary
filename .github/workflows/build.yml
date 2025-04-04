@@ -9,7 +9,8 @@ on:
         description: 'Test on Windows'
         type: boolean
         default: true
-
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 jobs:
   Windows:
     runs-on: windows-latest
