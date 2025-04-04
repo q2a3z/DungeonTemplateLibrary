@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      test_windows:
+        description: 'Test on Windows'
+        type: boolean
+        default: true
+
+jobs:
+  Windows:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v4
+    - name: Echo VS-version
+      run: |
+        @echo off
+        setlocal enabledelayedexpansion
+
+        for /f "usebackq tokens=*" %%i in (`vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe`) do (
+          "%%i" %*
+          exit /b !errorlevel!
+        )
