@@ -23,4 +23,4 @@ jobs:
     - name: VSWhere MSBuild
       shell: pwsh
       run: |
-        vswhere -version !version! -property installationPath
+        vswhere -version [15,17) -property installationPath
