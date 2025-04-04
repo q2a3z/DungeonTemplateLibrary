@@ -10,7 +10,7 @@ int main() {
 	dtl::shape::Border<shape_t>(1).draw(matrix);
 
 	dtl::console::OutputNumber<shape_t>(",").draw(matrix);
-	dtl::console::OutputString<shape_t>("//", "##").draw(matrix);
+	dtl::console::OutputString<shape_t>("//", "##").draw(matrix)
 
 	return 0;
 }
