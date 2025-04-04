@@ -19,5 +19,6 @@ jobs:
     - name: Build
       run: |
         mkdir ${{ github.workspace }}/build
+        cd ${{ github.workspace }}/build
         cmake ${{ github.workspace }}
-        make ${{ github.workspace }}/build/ci
+        make ci
