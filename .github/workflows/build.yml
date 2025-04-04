@@ -23,4 +23,5 @@ jobs:
     - name: VSWhere MSBuild
       shell: pwsh
       run: |
-        vswhere -version [15^,17^) -property installationPath
+        $var = [15,17)
+        vswhere -version $var -property installationPath
