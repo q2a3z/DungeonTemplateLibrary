@@ -89,7 +89,7 @@ int main() {
 	if (!matrix) return -1;
 
 	for (::dtl::type::size i{}; i < class_name_All; ++i)
-		output(i, matrix, size_x, size_y);
+		output(i, matrix, size_x, size_y)
 
 	return 0;
 }
