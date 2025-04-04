@@ -16,6 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Echo VS-version
+      shell: powershell
       run: |
         @echo off
         setlocal enabledelayedexpansion
