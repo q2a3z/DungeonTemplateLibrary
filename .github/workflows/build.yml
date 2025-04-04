@@ -9,18 +9,51 @@ on:
         description: 'Test on Windows'
         type: boolean
         default: true
-env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
 jobs:
-  Windows:
-    runs-on: windows-latest
+  MacOS:
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v4
 
-    - name: Setup VSWhere.exe
-      uses: warrenbuckley/Setup-VSWhere@v1
-
-    - name: VSWhere MSBuild
-      shell: pwsh
+    - name: Create Folder
       run: |
-        vswhere -version 15 -property installationPath
+        mkdir build
+        cd build
+
+    - name: CMake
+      run: |
+        cmake ..
+
+    - name: Make
+      run: |
+        make ci
+
+  # Windows:
+  #   runs-on: windows-2019
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Echo VS-version
+  #     shell: powershell
+  #     run: |
+  #       @echo off
+  #       setlocal enabledelayedexpansion
+
+  #       for /f "usebackq tokens=*" %%i in (`vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe`) do (
+  #         "%%i" %*
+  #         exit /b !errorlevel!
+  #       )
+  #   - name: Add msbuild to PATH
+  #     uses: microsoft/setup-msbuild@v2
+  #     with:
+  #       vs-version: '[16.0,16.5)'
+    
+  #   - name: Build
+  #     run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+  #   - name: MSBuild
+  #     uses: microsoft/setup-msbuild@v2
+  #     with:
+  #       vs-version: '[16.0,16.5)'
+
+    
